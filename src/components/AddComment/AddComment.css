@@ -1,0 +1,90 @@
+:root {
+    --Moderate-blue: hsl(238, 40%, 52%);
+    --Soft-Red: hsl(358, 79%, 66%);
+    --Light-grayish-blue: hsl(239, 57%, 85%);
+    --Pale-red: hsl(357, 100%, 86%);
+
+    --Dark-blue: hsl(212, 24%, 26%);
+    --Grayish-Blue: hsl(211, 10%, 45%);
+    --Light-gray: hsl(223, 19%, 93%);
+    --Very-light-gray: hsl(228, 33%, 97%);
+    --White: hsl(0, 0%, 100%);
+}
+
+
+.comment__btn {
+    background-color: var(--Moderate-blue);
+    color: var(--White);
+    border: none;
+    padding: .75rem 1.5rem;
+    border-radius: 4px;
+}
+
+.comment__container {
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: var(--White);
+}
+
+
+.profile__pic {
+    height: 2rem !important;
+    width: 2rem !important;
+}
+
+.comment__input__container {
+    display: grid;
+    margin-bottom: 1rem;
+    grid-template-areas: "avatar input button";
+    grid-template-columns: min-content auto min-content;
+    justify-items: center;
+    gap: 1rem;
+    min-height: 9rem;
+}
+
+.comment__input__container img {
+    grid-area: avatar;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.comment__input__container button {
+    grid-area: button;
+    align-self: flex-start;
+}
+
+.comment__input__container textarea {
+    grid-area: input;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid var(--Light-gray);
+    border-radius: 4px;
+    resize: none;
+}
+
+@media screen and (max-width:640px) {
+    .comment__container {
+        padding: .75rem;
+    }
+
+    .comment__input__container {
+        grid-template-areas:
+            "input input input"
+            "avatar ... button"
+        ;
+        grid-template-rows: auto min-content;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .comment__input__container img {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .comment__input__container textarea {
+        height: 6rem;
+        padding: .5rem;
+        align-self: stretch;
+    }
+}
