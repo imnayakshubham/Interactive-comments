@@ -65,6 +65,11 @@ button:hover {
     width: max-content;
   }
 
+  .loading__text {
+    width: 100% !important;
+    /* left: 40% !important; */
+  }
+
   .comment__content__header__actions {
     position: absolute !important;
     bottom: 35px !important;
@@ -93,4 +98,24 @@ button:hover {
   .active__user__actions {
     width: 100px;
   }
+}
+
+.loading {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+
+.loading__text {
+  width: 56%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  height: 67vh;
+}
+
+.loading__text>h3 {
+  font-weight: 800;
+  font-size: 1.4rem;
 }

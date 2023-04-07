@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./Comment.css"
-import data from "../../data/data.json"
 import { highlightUserTags, timeAgo } from '../../utils'
 import EditIcon from "../../assets/images/icon-edit.svg"
 import DeleteIcon from "../../assets/images/icon-delete.svg"
@@ -9,10 +8,13 @@ import PlusIcon from "../../assets/images/icon-plus.svg"
 import MinusIcon from "../../assets/images/icon-minus.svg"
 import { AddComment } from '../AddComment/AddComment'
 import { DeleteModal } from '../DeleteModal/DeleteModal'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 
 
 export const Comment = ({ commentData, isReply, updateCommentList, parentComment, deleteComment }) => {
-    const currentUser = data.currentUser
+    const { retriveUserInfo } = useLocalStorage("nestedCommentData")
+
+    const currentUser = retriveUserInfo()
     const [replying, setReplying] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [editMode, setEditMode] = useState(false)
