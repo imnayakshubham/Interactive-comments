@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./Comment.css"
-import { highlightUserTags, timeAgo } from '../../utils'
+import { highlightUserTags,parseCreatedAtString, timeAgo } from '../../utils'
 import EditIcon from "../../assets/images/icon-edit.svg"
 import DeleteIcon from "../../assets/images/icon-delete.svg"
 import ReplyIcon from "../../assets/images/icon-reply.svg"
