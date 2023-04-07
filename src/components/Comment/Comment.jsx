@@ -19,7 +19,24 @@ export const Comment = ({ commentData, isReply, updateCommentList, parentComment
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [editMode, setEditMode] = useState(false)
 
+const [time, setTime] = useState("");
+    const today = useMemo(() => new Date(), []);
 
+    const upadateTime = useCallback(() => {
+        const newDate = new Date(commentData.createdAt)
+        if (isNaN(newDate)) {
+            const differenceInTime = today.getTime() - parseCreatedAtString(commentData.createdAt).getTime()
+            setTime(timeAgo(differenceInTime));
+        } else {
+            const differenceInTime = today.getTime() - newDate.getTime()
+            setTime(timeAgo(differenceInTime));
+        }
+    }, [commentData.createdAt, today])
+
+    useEffect(() => {
+        upadateTime()
+    }, [upadateTime]);
+    
     const showCommentContent = () => {
         return highlightUserTags(commentData.content)
     }
@@ -105,7 +122,7 @@ export const Comment = ({ commentData, isReply, updateCommentList, parentComment
                                 <div className={`${commentData.user.username} profile__pic`}></div>
                                 <div className='profile__info'>
                                     <h3>{commentData?.user?.username}</h3>
-                                    <span>{typeof commentData.createdAt === "string" ? commentData.createdAt : timeAgo(commentData.createdAt)}</span>
+                                    <span>{time}</span>
                                 </div>
                             </div>
                         </div>
