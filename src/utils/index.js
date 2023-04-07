@@ -1,6 +1,4 @@
-export const timeAgo = (date) => {
-    const currentDate = new Date();
-    const timeDiff = currentDate.getTime() - date.getTime();
+export const timeAgo = (timeDiff) => {
     const seconds = Math.round(timeDiff / 1000);
     const minutes = Math.round(seconds / 60);
     const hours = Math.round(minutes / 60);
@@ -27,3 +25,44 @@ export const highlightUserTags = (text) => {
     return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
+export const parseCreatedAtString = (createdAtString) => {
+    const [count, unit] = createdAtString.split(' ');
+
+    const now = new Date();
+    let createdAt = new Date(now);
+
+    switch (unit) {
+        case 'seconds':
+        case 'second':
+            createdAt.setSeconds(now.getSeconds() - count);
+            break;
+        case 'minutes':
+        case 'minute':
+            createdAt.setMinutes(now.getMinutes() - count);
+            break;
+        case 'hours':
+        case 'hour':
+            createdAt.setHours(now.getHours() - count);
+            break;
+        case 'days':
+        case 'day':
+            createdAt.setDate(now.getDate() - count);
+            break;
+        case 'weeks':
+        case 'week':
+            createdAt.setDate(now.getDate() - count * 7);
+            break;
+        case 'months':
+        case 'month':
+            createdAt.setMonth(now.getMonth() - count);
+            break;
+        case 'years':
+        case 'year':
+            createdAt.setFullYear(now.getFullYear() - count);
+            break;
+        default:
+            throw new Error(`Invalid createdAtString: ${createdAtString}`);
+    }
+
+    return createdAt;
+}
