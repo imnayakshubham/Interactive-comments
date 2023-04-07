@@ -61,7 +61,7 @@ export const parseCreatedAtString = (createdAtString) => {
             createdAt.setFullYear(now.getFullYear() - count);
             break;
         default:
-            throw new Error(`Invalid createdAtString: ${createdAtString}`);
+
     }
 
     return createdAt;
